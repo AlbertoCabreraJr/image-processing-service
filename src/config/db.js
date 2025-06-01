@@ -19,7 +19,15 @@ const connectDB = async () => {
   }
 };
 
+const query = async (text, params) => {
+  const start = Date.now();
+  const res = await db.query(text, params);
+  const duration = Date.now() - start;
+  console.log("Query executed in", duration, "ms");
+  return res;
+}
+
 module.exports = {
   connectDB,
-  db,
+  query,
 }
